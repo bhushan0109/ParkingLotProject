@@ -1,5 +1,4 @@
 package com.finovate.parking.model;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
@@ -10,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import org.hibernate.annotations.GenericGenerator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.finovate.parking.dto.CarDTO;

@@ -32,24 +32,17 @@ public class ParkingLotController {
 		return new ResponseEntity<ResponseDTO>(responseDto, HttpStatus.OK);
 	}
 
-	/*
-	 * @GetMapping("/unpark") public ResponseEntity<ResponseDTO>
-	 * carUnPark(@RequestBody CarDTO carDTO) { Car car = carService.carPark(carDTO);
-	 * ResponseDTO responseDto = new ResponseDTO("Parked car", car); return new
-	 * ResponseEntity<ResponseDTO>(responseDto, HttpStatus.OK); }
-	 */
-
 	@DeleteMapping("/unpark/{id}")
-	public ResponseEntity<ResponseDTO> deletcar(@PathVariable ("id") Long id) {
+	public ResponseEntity<ResponseDTO> deletcar(@PathVariable("id") Long id) {
 		carService.unpark(id);
 		ResponseDTO responseDTO = new ResponseDTO("unparked successfully  ", id);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
 
-	@GetMapping("/getall" )
-		public ResponseEntity<ResponseDTO> getAllCar() {
-			List<Car> carData = carService.getAllCar();
-			ResponseDTO responseDTO = new ResponseDTO("Successfull got the data", carData);
-			return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
-		}
+	@GetMapping("/getall")
+	public ResponseEntity<ResponseDTO> getAllCar() {
+		List<Car> carData = carService.getAllCar();
+		ResponseDTO responseDTO = new ResponseDTO("Successfull got the data", carData);
+		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+	}
 }
