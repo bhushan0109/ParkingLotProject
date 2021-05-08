@@ -8,11 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.finovate.parking.dto.SlotDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,5 +40,12 @@ public class Slot implements Serializable {
 	@JsonIgnore
 	@JoinColumn
 	private ParkingLotCar parkingLotCar;
+	@OneToOne(mappedBy = "car_slot")
+    @JsonIgnore
+    private Car car;
 
+    public Slot(SlotDTO slotDTO){
+        this.slotNumber= slotDTO.getSlotNumber();
+
+    }
 }

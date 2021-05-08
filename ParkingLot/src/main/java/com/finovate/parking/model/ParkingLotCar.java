@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.finovate.parking.dto.ParkingLotDTO;
 
 import java.io.Serializable;
 import java.util.List;
@@ -43,4 +44,8 @@ public class ParkingLotCar implements Serializable {
 	@OneToMany(mappedBy = "ParkingLotCar")
 	public List<Car> car;
 
+	public ParkingLotCar(ParkingLotDTO parkingLotDTO) {
+		this.parkingLotId = parkingLotDTO.lotId;
+		this.parkingLotName = parkingLotDTO.parkingLotName;
+	}
 }
