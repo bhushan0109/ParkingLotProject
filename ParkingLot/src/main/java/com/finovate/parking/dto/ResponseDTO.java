@@ -15,4 +15,9 @@ public class ResponseDTO {
 
 	private Object data;
 
+	public ResponseDTO(String message) {
+		super();
+		this.message = message;
+	}
+
 }
