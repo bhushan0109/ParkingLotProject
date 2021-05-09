@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.finovate.parking.dto.ResponseDTO;
 import com.finovate.parking.dto.SlotDTO;
 
 import lombok.AllArgsConstructor;
@@ -51,5 +52,9 @@ public class Slot implements Serializable {
 	public Slot(SlotDTO slotDTO) {
 		this.slotNumber = slotDTO.getSlotNumber();
 
+	}
+
+	public Slot(SlotDTO slotDTO, ResponseDTO responseDTO) {
+		this.slotNumber=responseDTO.message;
 	}
 }

@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.finovate.parking.dto.CarDTO;
 import com.finovate.parking.dto.ParkingLotDTO;
+import com.finovate.parking.dto.ResponseDTO;
 import com.finovate.parking.dto.SlotDTO;
 import com.finovate.parking.model.Car;
 import com.finovate.parking.model.ParkingLotCar;
@@ -18,5 +19,7 @@ public interface ICarService {
 	public Car carPark(CarDTO carDTO);
 
 	void unPark(UUID carNumber);
+
+	ResponseDTO checkParkinglotFullOrNot();
 
 }

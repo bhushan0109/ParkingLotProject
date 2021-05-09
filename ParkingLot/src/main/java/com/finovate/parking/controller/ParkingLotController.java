@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,4 +50,9 @@ public class ParkingLotController {
 		ResponseDTO responseDTO = new ResponseDTO("unpark successfully and again free one car space ", carNumber);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
+	@GetMapping("/checkfull")
+    public  ResponseEntity<ResponseDTO> checkFull(){
+		ResponseDTO responseDto = new ResponseDTO("Parking lot details ", carService.checkParkinglotFullOrNot());
+        return new ResponseEntity<>(responseDto,HttpStatus.OK);
+    }
 }
