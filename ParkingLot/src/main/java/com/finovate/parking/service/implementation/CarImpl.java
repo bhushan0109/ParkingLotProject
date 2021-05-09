@@ -1,9 +1,10 @@
 package com.finovate.parking.service.implementation;
 
-import com.finovate.model.Address;
+import com.finovate.parking.dto.CarDTO;
 import com.finovate.parking.dto.ParkingLotDTO;
 import com.finovate.parking.dto.SlotDTO;
 import com.finovate.parking.exception.ParkingLotException;
+import com.finovate.parking.model.Car;
 import com.finovate.parking.model.ParkingLotCar;
 import com.finovate.parking.model.Slot;
 import com.finovate.parking.repository.CarRepository;
@@ -11,6 +12,7 @@ import com.finovate.parking.repository.ParkingLotRepository;
 import com.finovate.parking.repository.SlotRepository;
 import com.finovate.parking.service.ICarService;
 
+import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,21 @@ public class CarImpl implements ICarService {
 				.orElseThrow(() -> new ParkingLotException("details not found!"));
 		slot.setParkingLotCar(parkingLot);
 		return slotRepository.save(slot);
+	}
+
+	public Car carPark(CarDTO carDTO) {
+
+		Car car = new Car(carDTO);
+		car.setInTime(new Date());
+		Slot slot = slotRepository.findById(UUID.fromString(carDTO.getSlotUUID()))
+				.orElseThrow(() -> new ParkingLotException("details not found!"));
+		car.setSlot(slot);
+
+		ParkingLotCar parkingLot = parkingLotRepository.findById(UUID.fromString(carDTO.getLotUUID()))
+				.orElseThrow(() -> new ParkingLotException(" VEHICLE IS ALREADY PARKED !"));
+		car.setParkingLotCar(parkingLot);
+
+		return carRepository.save(car);
 	}
 
 }

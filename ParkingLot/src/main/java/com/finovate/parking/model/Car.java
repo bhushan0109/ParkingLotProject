@@ -41,19 +41,19 @@ public class Car implements Serializable {
 	@Column(name = "cid", columnDefinition = "BINARY(16)") // 16 byte array or a hexadecimal String value
 	private UUID cid;
 	private String platNumber;
-
+	@JsonIgnore
 	@Temporal(value = TemporalType.TIMESTAMP) // It's used to specify the desired SQL type.
-	@Column(name = "in_time", nullable = false)
+	@Column(name = "in_time")
 	private Date inTime;
 
 	@JsonIgnore // used at field level to mark a property or list of properties to be ignored.
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "out_time")
 	private Date outTime;
-
+	@JsonIgnore 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Slot slot;
-
+	@JsonIgnore 
 	 @ManyToOne(fetch = FetchType.LAZY)
 	private ParkingLotCar parkingLotCar;
 

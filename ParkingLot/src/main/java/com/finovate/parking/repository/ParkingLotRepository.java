@@ -8,5 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.finovate.parking.model.ParkingLotCar;
 
 @Repository
-public interface ParkingLotRepository extends JpaRepository<ParkingLotCar,UUID>{
+public interface ParkingLotRepository extends JpaRepository<ParkingLotCar, UUID> {
+
+	// ParkingLotCar findById(Integer lotId);
 }

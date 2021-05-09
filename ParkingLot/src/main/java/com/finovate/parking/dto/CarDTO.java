@@ -11,4 +11,6 @@ import lombok.ToString;
 @ToString
 public class CarDTO {
 	private String platNumber;
+	public String lotUUID;
+	 public  String slotUUID;
 }
