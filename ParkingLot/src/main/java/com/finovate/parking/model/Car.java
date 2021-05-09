@@ -30,7 +30,7 @@ import lombok.ToString;
 @AllArgsConstructor // LOMBOK library
 @ToString
 @Entity
-@Table(name="car_table")
+@Table(name = "car_table")
 public class Car implements Serializable {
 
 	private static final long serialVersionUID = 7629581767757128364L; // used during deserialization to verify that the
@@ -41,7 +41,8 @@ public class Car implements Serializable {
 	@Column(name = "cid", columnDefinition = "BINARY(16)") // 16 byte array or a hexadecimal String value
 	private UUID cid;
 	private String platNumber;
-	
+	private String color;
+	private String model;
 	@Temporal(value = TemporalType.TIMESTAMP) // It's used to specify the desired SQL type.
 	@Column(name = "in_time")
 	private Date inTime;
@@ -50,15 +51,17 @@ public class Car implements Serializable {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "out_time")
 	private Date outTime;
-	@JsonIgnore 
+	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Slot slot;
-	@JsonIgnore 
-	 @ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY)
 	private ParkingLotCar parkingLotCar;
 
 	public Car(CarDTO carDTO) {
 		this.platNumber = carDTO.getPlatNumber();
+		this.color=carDTO.getColor();
+        this.model=carDTO.getModel();
 
 	}
 }

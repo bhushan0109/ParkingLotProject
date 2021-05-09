@@ -12,5 +12,7 @@ import lombok.ToString;
 public class CarDTO {
 	private String platNumber;
 	public String lotUUID;
-	 public  String slotUUID;
+	public String slotUUID;
+	private String color;
+	private String model;
 }

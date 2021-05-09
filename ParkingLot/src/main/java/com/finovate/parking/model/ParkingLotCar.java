@@ -28,7 +28,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="parkinglot_table")
+@Table(name = "parkinglot_table")
 public class ParkingLotCar implements Serializable {
 
 	private static final long serialVersionUID = 7737732509833641214L;
@@ -41,11 +41,11 @@ public class ParkingLotCar implements Serializable {
 	private String parkingLotName;
 
 	@JsonIgnore
-    @OneToMany(mappedBy = "parkingLotCar")
+	@OneToMany(mappedBy = "parkingLotCar")
 	public List<Slot> slots;
 
 	@JsonIgnore
-    @OneToMany(mappedBy = "parkingLotCar")
+	@OneToMany(mappedBy = "parkingLotCar")
 	public List<Car> car;
 
 	public ParkingLotCar(ParkingLotDTO parkingLotDTO) {
