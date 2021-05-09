@@ -1,16 +1,10 @@
 package com.finovate.parking.service;
 
-import java.util.List;
-
-import com.finovate.parking.dto.CarDTO;
-import com.finovate.parking.model.Car;
+import com.finovate.parking.dto.ParkingLotDTO;
+import com.finovate.parking.model.ParkingLotCar;
 
 public interface ICarService {
 
-	Car carPark(CarDTO carDTO);
-
-	List<Car> getAllCar();
-
-	void unpark(Long id);
+	public ParkingLotCar addParkingLot(ParkingLotDTO parkingLotDTO);
 
 }

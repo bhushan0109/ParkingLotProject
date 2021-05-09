@@ -23,7 +23,7 @@ public class SwaggerConfiguration {
 	}
 
 	private Predicate<String> postPaths() {
-		return or(regex("/car.*"));
+		return or(regex("/parkinglot.*"));
 	//return or(regex("/car*"), regex("/XYZ.*"));		//FOR TWO controller
 	}
 
