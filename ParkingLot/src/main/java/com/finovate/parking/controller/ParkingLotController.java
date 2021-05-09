@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.finovate.parking.dto.ParkingLotDTO;
 import com.finovate.parking.dto.ResponseDTO;
+import com.finovate.parking.dto.SlotDTO;
 import com.finovate.parking.service.ICarService;
 
 @RestController
@@ -21,9 +22,13 @@ public class ParkingLotController {
 
 	@PostMapping("/add")
 	public ResponseEntity<ResponseDTO> addParkingLot(@RequestBody ParkingLotDTO parkingLotDTO) {
-
-		ResponseDTO responseDto = new ResponseDTO("Added parking lot", carService.addParkingLot(parkingLotDTO));
-		return new ResponseEntity<>(responseDto, HttpStatus.OK);
+		ResponseDTO responseDTO= new ResponseDTO("Added parking lot", carService.addParkingLot(parkingLotDTO));
+		return new ResponseEntity<>(responseDTO, HttpStatus.OK);
 	}
 
+	@PostMapping("/add/slot")
+	public ResponseEntity<ResponseDTO> addSlot(@RequestBody SlotDTO slotDTO) {
+		ResponseDTO responseDTO = new ResponseDTO("added new slot into parking lot", carService.addSlot(slotDTO));
+		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+	}
 }
