@@ -5,11 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,7 +28,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "ParkingLotCar")
+@Table(name="parkinglot_table")
 public class ParkingLotCar implements Serializable {
 
 	private static final long serialVersionUID = 7737732509833641214L;
@@ -33,15 +37,15 @@ public class ParkingLotCar implements Serializable {
 	@GenericGenerator(name = "uuid2", strategy = "uuid2") // universally unique identifier (UUID)
 	@Column(name = "pid", columnDefinition = "BINARY(16)") // 16 byte array or a hexadecimal String value
 	private UUID pid;
-	private Integer parkingLotId;
+	private int parkingLotId;
 	private String parkingLotName;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "ParkingLotCar")
+    @OneToMany(mappedBy = "parkingLotCar")
 	public List<Slot> slots;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "ParkingLotCar")
+    @OneToMany(mappedBy = "parkingLotCar")
 	public List<Car> car;
 
 	public ParkingLotCar(ParkingLotDTO parkingLotDTO) {
