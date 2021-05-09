@@ -1,8 +1,12 @@
 package com.finovate.parking.controller;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +40,13 @@ public class ParkingLotController {
 	@PostMapping("/park")
 	public ResponseEntity<ResponseDTO> carPark(@RequestBody CarDTO carDTO) {
 		ResponseDTO responseDTO = new ResponseDTO("Parked Vehicle", carService.carPark(carDTO));
+		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+	}
+
+	@DeleteMapping("/unpark/{carNumber}")
+	public ResponseEntity<ResponseDTO> unparkCar(@PathVariable("carNumber") UUID carNumber) {
+		carService.unPark(carNumber);
+		ResponseDTO responseDTO = new ResponseDTO("unpark successfully and again free one car space ", carNumber);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
 }

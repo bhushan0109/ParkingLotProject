@@ -1,5 +1,7 @@
 package com.finovate.parking.service;
 
+import java.util.UUID;
+
 import com.finovate.parking.dto.CarDTO;
 import com.finovate.parking.dto.ParkingLotDTO;
 import com.finovate.parking.dto.SlotDTO;
@@ -14,5 +16,7 @@ public interface ICarService {
 	public Slot addSlot(SlotDTO slotDTO);
 
 	public Car carPark(CarDTO carDTO);
+
+	void unPark(UUID carNumber);
 
 }

@@ -59,4 +59,10 @@ public class CarImpl implements ICarService {
 		return carRepository.save(car);
 	}
 
+	@Override
+	public void unPark(UUID carNumber) {
+		carRepository.deleteById(carNumber);
+
+	}
+
 }
