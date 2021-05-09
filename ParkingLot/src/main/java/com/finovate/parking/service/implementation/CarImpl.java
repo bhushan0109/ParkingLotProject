@@ -37,20 +37,12 @@ public class CarImpl implements ICarService {
 		return parkingLotRepository.save(Lot);
 	}
 
-	/*
-	 * @Override public Slot addSlot(SlotDTO slotDTO) { Slot slot = new
-	 * Slot(slotDTO); ParkingLotCar parkingLot =
-	 * parkingLotRepository.findById(UUID.fromString(slotDTO.getParkingLotUUID()))
-	 * .orElseThrow(() -> new ParkingLotException("details not found!"));
-	 * slot.setParkingLotCar(parkingLot); return slotRepository.save(slot); }
-	 */
-
 	@Override
 	public Slot addSlot(SlotDTO slotDTO) {
 		Slot slot = new Slot(slotDTO);
 		List<Slot> slot1 = slotRepository.findAll();
 
-		if (slot1.size() < 2) {
+		if (slot1.size() < 3) {
 			// return new ResponseDTO("lot is full");
 			ParkingLotCar parkingLot = parkingLotRepository.findById(UUID.fromString(slotDTO.getParkingLotUUID()))
 					.orElseThrow(() -> new ParkingLotException("details not found!"));
@@ -84,12 +76,17 @@ public class CarImpl implements ICarService {
 	@Override
 	public ResponseDTO checkParkinglotFullOrNot() {
 		List<Slot> slot = slotRepository.findAll();
-		if (slot.size() <= 2) {
-			return new ResponseDTO("lot is full");
+		if (slot.size() < 2) {
+			return new ResponseDTO("lot is empty");
 		} else {
-			return new ResponseDTO("slots empty");
+			return new ResponseDTO("lot is full");
 		}
+	}
 
+	@Override
+	public List<Car> getAllcar() {
+		List<Car> car = carRepository.findAll();
+		return car;
 	}
 
 }

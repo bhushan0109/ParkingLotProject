@@ -41,7 +41,7 @@ public class Car implements Serializable {
 	@Column(name = "cid", columnDefinition = "BINARY(16)") // 16 byte array or a hexadecimal String value
 	private UUID cid;
 	private String platNumber;
-	@JsonIgnore
+	
 	@Temporal(value = TemporalType.TIMESTAMP) // It's used to specify the desired SQL type.
 	@Column(name = "in_time")
 	private Date inTime;

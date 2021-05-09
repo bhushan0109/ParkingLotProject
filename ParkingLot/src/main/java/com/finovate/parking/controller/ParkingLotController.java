@@ -55,4 +55,9 @@ public class ParkingLotController {
 		ResponseDTO responseDto = new ResponseDTO("Parking lot details ", carService.checkParkinglotFullOrNot());
         return new ResponseEntity<>(responseDto,HttpStatus.OK);
     }
+	 @GetMapping("/find/all")
+	    public ResponseEntity<ResponseDTO> getAllcar(){
+	        ResponseDTO responseDTO=new ResponseDTO("All vehicles:", carService.getAllcar());
+	        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
+	    }
 }
