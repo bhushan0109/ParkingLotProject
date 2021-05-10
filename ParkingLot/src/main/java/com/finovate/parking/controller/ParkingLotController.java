@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.finovate.parking.dto.CarDTO;
@@ -73,5 +74,10 @@ public class ParkingLotController {
 		ResponseDTO responseDTO = new ResponseDTO("list of vehical same color", carService.findByModel(model));
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
+	@GetMapping("/find")
+    public ResponseEntity<ResponseDTO> findByColorAndModel(@RequestParam ("color") String color,@RequestParam ("model") String model){
+		ResponseDTO responseDto = new ResponseDTO(color +" "+model +" cars lists and location : ", carService.findByColorAndModel(color,model));
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    }
 
 }

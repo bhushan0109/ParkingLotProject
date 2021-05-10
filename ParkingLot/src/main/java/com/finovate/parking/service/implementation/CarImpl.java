@@ -101,4 +101,10 @@ public class CarImpl implements ICarService {
 		return car;
 	}
 
+	@Override
+	public List<Car> findByColorAndModel(String color, String model) {
+		List<Car> car = carRepository.findByColorAndModel(color, model);
+		return car;
+	}
+
 }
