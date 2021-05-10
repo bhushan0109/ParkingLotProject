@@ -27,5 +27,6 @@ public interface ICarService {
 	public List<Car> getAllcar();
 
 	public List<Car> findByColor(String color);
+	public List<Car> findByModel(String color);
 
 }

@@ -66,9 +66,12 @@ public class ParkingLotController {
 	@GetMapping("/find/{color}")
 	public ResponseEntity<ResponseDTO> findByColor(@PathVariable("color") String color) {
 		ResponseDTO responseDTO = new ResponseDTO("list of vehical same color", carService.findByColor(color));
-
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
-
+	}
+	@GetMapping("/find/model/{model}")
+	public ResponseEntity<ResponseDTO> findByModel(@PathVariable("model") String model) {
+		ResponseDTO responseDTO = new ResponseDTO("list of vehical same color", carService.findByModel(model));
+		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
 
 }

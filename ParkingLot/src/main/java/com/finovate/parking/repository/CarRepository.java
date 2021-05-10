@@ -11,7 +11,7 @@ import com.finovate.parking.model.Car;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car, UUID> {
-
 	List<Car> findByColor(String color);
+	List<Car> findByModel(String model);
 
 }
