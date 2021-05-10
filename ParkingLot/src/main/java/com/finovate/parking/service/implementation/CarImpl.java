@@ -12,11 +12,10 @@ import com.finovate.parking.repository.CarRepository;
 import com.finovate.parking.repository.ParkingLotRepository;
 import com.finovate.parking.repository.SlotRepository;
 import com.finovate.parking.service.ICarService;
-
-import java.util.Date;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,7 +56,7 @@ public class CarImpl implements ICarService {
 	public Car carPark(CarDTO carDTO) {
 
 		Car car = new Car(carDTO);
-		car.setInTime(new Date());
+		car.setCreatedTimeStamp(LocalDateTime.now());
 		Slot slot = slotRepository.findById(UUID.fromString(carDTO.getSlotUUID()))
 				.orElseThrow(() -> new ParkingLotException("details not found!"));
 		car.setSlot(slot);
@@ -106,5 +105,17 @@ public class CarImpl implements ICarService {
 		List<Car> car = carRepository.findByColorAndModel(color, model);
 		return car;
 	}
+
+	@Override
+	public ResponseDTO findParkingTime(String plateNumber) {
+		LocalDateTime time1 =  carRepository.findById(UUID.fromString(plateNumber)).orElseThrow().getCreatedTimeStamp();
+		//LocalDateTime time1 =  carRepository.findByPlateNumber(plateNumber);
+		LocalDateTime time2 = LocalDateTime.now();
+	      Duration timeDuration = Duration.between( time1, time2);
+	    
+	      
+	      return new ResponseDTO("Time taken: "+ timeDuration.toMinutesPart() +" minuts");
+	}
+
 
 }

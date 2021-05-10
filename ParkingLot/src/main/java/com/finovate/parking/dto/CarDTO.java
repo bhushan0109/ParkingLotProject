@@ -10,7 +10,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class CarDTO {
-	private String platNumber;
+	private String plateNumber;
 	public String lotUUID;
 	public String slotUUID;
 	private String color;

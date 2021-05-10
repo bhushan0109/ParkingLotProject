@@ -69,15 +69,25 @@ public class ParkingLotController {
 		ResponseDTO responseDTO = new ResponseDTO("list of vehical same color", carService.findByColor(color));
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
+
 	@GetMapping("/find/model/{model}")
 	public ResponseEntity<ResponseDTO> findByModel(@PathVariable("model") String model) {
 		ResponseDTO responseDTO = new ResponseDTO("list of vehical same color", carService.findByModel(model));
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
-	@GetMapping("/find")
-    public ResponseEntity<ResponseDTO> findByColorAndModel(@RequestParam ("color") String color,@RequestParam ("model") String model){
-		ResponseDTO responseDto = new ResponseDTO(color +" "+model +" cars lists and location : ", carService.findByColorAndModel(color,model));
-        return new ResponseEntity<>(responseDto, HttpStatus.OK);
-    }
 
+	@GetMapping("/find")
+	public ResponseEntity<ResponseDTO> findByColorAndModel(@RequestParam("color") String color,
+			@RequestParam("model") String model) {
+		ResponseDTO responseDto = new ResponseDTO(color + " " + model + " cars lists and location : ",
+				carService.findByColorAndModel(color, model));
+		return new ResponseEntity<>(responseDto, HttpStatus.OK);
+	}
+
+	@GetMapping("/charge/{plateNumber}")
+	public ResponseEntity<ResponseDTO> findParkingTime(@PathVariable("plateNumber") String plateNumber) {
+		ResponseDTO ResponseDTO = new ResponseDTO("Total parking time is : ", carService.findParkingTime(plateNumber));
+		return new ResponseEntity<>(ResponseDTO, HttpStatus.OK);
+
+	}
 }

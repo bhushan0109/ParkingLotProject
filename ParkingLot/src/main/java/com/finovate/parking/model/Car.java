@@ -1,6 +1,7 @@
 package com.finovate.parking.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -10,9 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -40,17 +41,12 @@ public class Car implements Serializable {
 	@GenericGenerator(name = "uuid2", strategy = "uuid2") // universally unique identifier (UUID)
 	@Column(name = "cid", columnDefinition = "BINARY(16)") // 16 byte array or a hexadecimal String value
 	private UUID cid;
-	private String platNumber;
+	private String plateNumber;
 	private String color;
 	private String model;
-	@Temporal(value = TemporalType.TIMESTAMP) // It's used to specify the desired SQL type.
-	@Column(name = "in_time")
-	private Date inTime;
-
+	private LocalDateTime createdTimeStamp;
 	@JsonIgnore // used at field level to mark a property or list of properties to be ignored.
-	@Temporal(value = TemporalType.TIMESTAMP)
-	@Column(name = "out_time")
-	private Date outTime;
+	private LocalDateTime updatedTimeStamp;
 	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Slot slot;
@@ -59,9 +55,9 @@ public class Car implements Serializable {
 	private ParkingLotCar parkingLotCar;
 
 	public Car(CarDTO carDTO) {
-		this.platNumber = carDTO.getPlatNumber();
-		this.color=carDTO.getColor();
-        this.model=carDTO.getModel();
+		this.plateNumber = carDTO.getPlateNumber();
+		this.color = carDTO.getColor();
+		this.model = carDTO.getModel();
 
 	}
 }
