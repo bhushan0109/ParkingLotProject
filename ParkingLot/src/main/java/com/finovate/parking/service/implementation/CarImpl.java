@@ -15,7 +15,6 @@ import com.finovate.parking.service.ICarService;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,16 +91,8 @@ public class CarImpl implements ICarService {
 
 	@Override
 	public List<Car> findByColor(String color) {
-		List<Car> car =carRepository.findByColor(color);
+		List<Car> car = carRepository.findByColor(color);
 		return car;
 	}
-
-	
-
-	/*
-	 * @Override public Optional<Car> findByColor(UUID color) { Optional<Car> car =
-	 * carRepository.findById(UUID.fromString(carDTO.) .orElseThrow(() -> new
-	 * ParkingLotException("details not found!")); return car; }
-	 */
 
 }

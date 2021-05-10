@@ -26,12 +26,6 @@ public interface ICarService {
 
 	public List<Car> getAllcar();
 
-	//List<Car> findByColor(UUID color);
-
-	//List<Car> findByColor(CarDTO carDTO);
-
 	public List<Car> findByColor(String color);
-
-	//Optional<Car> findByColor(UUID color);
 
 }
