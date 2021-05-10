@@ -15,6 +15,7 @@ import com.finovate.parking.service.ICarService;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,7 +77,7 @@ public class CarImpl implements ICarService {
 	@Override
 	public ResponseDTO checkParkinglotFullOrNot() {
 		List<Slot> slot = slotRepository.findAll();
-		if (slot.size() < 2) {
+		if (slot.size() < 3) {
 			return new ResponseDTO("lot is empty");
 		} else {
 			return new ResponseDTO("lot is full");
@@ -88,5 +89,19 @@ public class CarImpl implements ICarService {
 		List<Car> car = carRepository.findAll();
 		return car;
 	}
+
+	@Override
+	public List<Car> findByColor(String color) {
+		List<Car> car =carRepository.findByColor(color);
+		return car;
+	}
+
+	
+
+	/*
+	 * @Override public Optional<Car> findByColor(UUID color) { Optional<Car> car =
+	 * carRepository.findById(UUID.fromString(carDTO.) .orElseThrow(() -> new
+	 * ParkingLotException("details not found!")); return car; }
+	 */
 
 }

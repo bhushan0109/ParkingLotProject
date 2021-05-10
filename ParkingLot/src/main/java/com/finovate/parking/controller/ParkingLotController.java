@@ -2,6 +2,9 @@ package com.finovate.parking.controller;
 
 import java.util.UUID;
 
+import javax.websocket.server.PathParam;
+
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import com.finovate.parking.dto.CarDTO;
 import com.finovate.parking.dto.ParkingLotDTO;
@@ -50,14 +54,25 @@ public class ParkingLotController {
 		ResponseDTO responseDTO = new ResponseDTO("unpark successfully and again free one car space ", carNumber);
 		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
 	}
+
 	@GetMapping("/checkfull")
-    public  ResponseEntity<ResponseDTO> checkFull(){
+	public ResponseEntity<ResponseDTO> checkFull() {
 		ResponseDTO responseDto = new ResponseDTO("Parking lot details ", carService.checkParkinglotFullOrNot());
-        return new ResponseEntity<>(responseDto,HttpStatus.OK);
-    }
-	 @GetMapping("/find/all")
-	    public ResponseEntity<ResponseDTO> getAllcar(){
-	        ResponseDTO responseDTO=new ResponseDTO("All vehicles:", carService.getAllcar());
-	        return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
-	    }
+		return new ResponseEntity<>(responseDto, HttpStatus.OK);
+	}
+
+	@GetMapping("/find/all")
+	public ResponseEntity<ResponseDTO> getAllcar() {
+		ResponseDTO responseDTO = new ResponseDTO("All vehicles:", carService.getAllcar());
+		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+	}
+
+	@GetMapping("/find/{color}")
+	public ResponseEntity<ResponseDTO> findByColor(@PathVariable("color") String color) {
+		ResponseDTO responseDTO = new ResponseDTO("list of vehical same color", carService.findByColor(color));
+
+		return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
+
+	}
+
 }

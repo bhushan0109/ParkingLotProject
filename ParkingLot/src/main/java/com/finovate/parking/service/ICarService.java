@@ -1,6 +1,7 @@
 package com.finovate.parking.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import com.finovate.parking.dto.CarDTO;
@@ -24,5 +25,13 @@ public interface ICarService {
 	ResponseDTO checkParkinglotFullOrNot();
 
 	public List<Car> getAllcar();
+
+	//List<Car> findByColor(UUID color);
+
+	//List<Car> findByColor(CarDTO carDTO);
+
+	public List<Car> findByColor(String color);
+
+	//Optional<Car> findByColor(UUID color);
 
 }

@@ -1,5 +1,7 @@
 package com.finovate.parking.dto;
 
+import com.finovate.parking.model.Slot;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,5 +21,7 @@ public class ResponseDTO {
 		super();
 		this.message = message;
 	}
+
+	
 
 }
