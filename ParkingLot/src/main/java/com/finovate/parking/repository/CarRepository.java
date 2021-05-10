@@ -1,7 +1,5 @@
 package com.finovate.parking.repository;
 
-
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -18,16 +16,5 @@ public interface CarRepository extends JpaRepository<Car, UUID> {
 	List<Car> findByModel(String model);
 
 	List<Car> findByColorAndModel(String color, String model);
-	
-
-	/*
-	 * List<Car> findByInTimeAnd(Date inTime);
-	 * 
-	 * List<Car> findByOutTime(Date outTime);
-	 */
-
-	LocalDateTime findByPlateNumber(String plateNumber);
-
-	
 
 }

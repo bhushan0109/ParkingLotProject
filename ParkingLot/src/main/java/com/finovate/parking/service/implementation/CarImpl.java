@@ -107,15 +107,12 @@ public class CarImpl implements ICarService {
 	}
 
 	@Override
-	public ResponseDTO findParkingTime(String plateNumber) {
-		LocalDateTime time1 =  carRepository.findById(UUID.fromString(plateNumber)).orElseThrow().getCreatedTimeStamp();
-		//LocalDateTime time1 =  carRepository.findByPlateNumber(plateNumber);
-		LocalDateTime time2 = LocalDateTime.now();
-	      Duration timeDuration = Duration.between( time1, time2);
-	    
-	      
-	      return new ResponseDTO("Time taken: "+ timeDuration.toMinutesPart() +" minuts");
+	public ResponseDTO findParkingTime(String carUUID) {
+		LocalDateTime parkTime = carRepository.findById(UUID.fromString(carUUID)).orElseThrow().getCreatedTimeStamp();
+		LocalDateTime unParkTime = LocalDateTime.now();
+		Duration timeDuration = Duration.between(parkTime, unParkTime);
+		return new ResponseDTO(
+				"Time taken: " + timeDuration.toHoursPart() + " Hr: " + timeDuration.toMinutesPart() + " minuts");
 	}
-
 
 }

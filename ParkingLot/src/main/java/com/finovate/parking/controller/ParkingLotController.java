@@ -79,14 +79,14 @@ public class ParkingLotController {
 	@GetMapping("/find")
 	public ResponseEntity<ResponseDTO> findByColorAndModel(@RequestParam("color") String color,
 			@RequestParam("model") String model) {
-		ResponseDTO responseDto = new ResponseDTO(color + " " + model + " cars lists and location : ",
+		ResponseDTO responseDTO = new ResponseDTO(color + " " + model + " cars lists and location : ",
 				carService.findByColorAndModel(color, model));
-		return new ResponseEntity<>(responseDto, HttpStatus.OK);
+		return new ResponseEntity<>(responseDTO, HttpStatus.OK);
 	}
 
-	@GetMapping("/charge/{plateNumber}")
-	public ResponseEntity<ResponseDTO> findParkingTime(@PathVariable("plateNumber") String plateNumber) {
-		ResponseDTO ResponseDTO = new ResponseDTO("Total parking time is : ", carService.findParkingTime(plateNumber));
+	@GetMapping("/charge")
+	public ResponseEntity<ResponseDTO> findParkingTime(@RequestParam("carUUID") String carUUID) {
+		ResponseDTO ResponseDTO = new ResponseDTO(carUUID+ "Total parking time is : ", carService.findParkingTime(carUUID));
 		return new ResponseEntity<>(ResponseDTO, HttpStatus.OK);
 
 	}

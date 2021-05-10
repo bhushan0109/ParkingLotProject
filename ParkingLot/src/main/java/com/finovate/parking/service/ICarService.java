@@ -32,6 +32,6 @@ public interface ICarService {
 
 	public List<Car> findByColorAndModel(String color, String model);
 
-	public  ResponseDTO findParkingTime(String plateNumber);
+	public  ResponseDTO findParkingTime(String carUUID);
 
 }
